@@ -5,6 +5,7 @@ import { parseEventCommand, sendMessageToTelex } from './utils';
 import { BackgroundTaskQueue } from './queue';
 import { eventValidator } from './validators';
 import { validationResult } from 'express-validator';
+import morgan from 'morgan';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -13,13 +14,14 @@ const storage = new Storage();
 const taskQueue = new BackgroundTaskQueue();
 
 app.use(express.json());
+app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
   res.send('Hi there!');
 });
 
 app.get('/integration-json', (req, res) => {
-  const baseUrl = req.protocol + '://' + req.get('host');
+  const baseUrl = 'https://' + req.get('host');
   res.json({
     author: 'Aanuoluwapo Liasu',
     data: {
