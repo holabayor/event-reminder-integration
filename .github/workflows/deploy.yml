@@ -24,11 +24,11 @@ jobs:
         run: npm run build
 
       - name: Deploy to Azure VM
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.AZURE_HOST }}
           username: ${{ secrets.AZURE_USERNAME }}
-          password: ${{ secrets.AZURE_PRIVATE_KEY }}
+          key: ${{ secrets.AZURE_PRIVATE_KEY }}
           script: |
             cd /home/${{ secrets.AZURE_USERNAME }}/event-reminder-integration
             git pull origin main
