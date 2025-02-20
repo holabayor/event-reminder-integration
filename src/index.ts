@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/integration-json', (req, res) => {
-  const baseUrl = 'https://' + req.get('host');
+  const baseUrl = req.protocol + 'https://' + req.get('host');
   res.json({
     author: 'Aanuoluwapo Liasu',
     data: {
