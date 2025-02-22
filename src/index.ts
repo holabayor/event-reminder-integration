@@ -54,7 +54,7 @@ app.get('/integration-json', (req, res) => {
         {
           label: 'reminder-interval',
           description: 'The default reminder interval in minutes',
-          type: 'number',
+          type: 'text',
           default: '2',
           required: true,
         },
@@ -138,7 +138,7 @@ app.post('/event', eventValidator, (req: Request, res: Response) => {
   }
 });
 
-app.post('/tick', (req, res) => {
+app.post('/tick', (req: Request, res: Response) => {
 
   taskQueue.addTask(async () => {
     const events = storage.getEvents();
