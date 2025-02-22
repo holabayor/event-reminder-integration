@@ -1,39 +1,49 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs_1 = __importDefault(require("fs"));
-const EVENTS_FILE = './events.json';
+// const EVENTS_FILE = './events.json';
+// export default class Storage {
+//   private eventsFile: string;
+//   constructor(filePath: string = EVENTS_FILE) {
+//     this.eventsFile = filePath;
+//     if (!fs.existsSync(this.eventsFile)) {
+//       fs.writeFileSync(this.eventsFile, JSON.stringify([]));
+//     }
+//   }
+//   public getEvents(): EventData[] {
+//     try {
+//       const data = fs.readFileSync(this.eventsFile, { encoding: 'utf-8' });
+//       return JSON.parse(data) as EventData[];
+//     } catch (error) {
+//       console.error('Error reading events file', error);
+//       return [];
+//     }
+//   }
+//   public saveEvents(events: EventData[]): void {
+//     fs.writeFileSync(this.eventsFile, JSON.stringify(events));
+//   }
+//   public addEvent(event: EventData): void {
+//     const events = this.getEvents();
+//     events.push(event);
+//     this.saveEvents(events);
+//   }
+//   public deleteEvent(eventId: string): void {
+//     const events = this.getEvents();
+//     const updatedEvents = events.filter((event) => event.id !== eventId);
+//     this.saveEvents(updatedEvents);
+//   }
+// }
 class Storage {
-    constructor(filePath = EVENTS_FILE) {
-        this.eventsFile = filePath;
-        if (!fs_1.default.existsSync(this.eventsFile)) {
-            fs_1.default.writeFileSync(this.eventsFile, JSON.stringify([]));
-        }
+    constructor() {
+        this.events = [];
     }
     getEvents() {
-        try {
-            const data = fs_1.default.readFileSync(this.eventsFile, { encoding: 'utf-8' });
-            return JSON.parse(data);
-        }
-        catch (error) {
-            console.error('Error reading events file', error);
-            return [];
-        }
-    }
-    saveEvents(events) {
-        fs_1.default.writeFileSync(this.eventsFile, JSON.stringify(events));
+        return this.events;
     }
     addEvent(event) {
-        const events = this.getEvents();
-        events.push(event);
-        this.saveEvents(events);
+        this.events.push(event);
     }
     deleteEvent(eventId) {
-        const events = this.getEvents();
-        const updatedEvents = events.filter((event) => event.id !== eventId);
-        this.saveEvents(updatedEvents);
+        this.events = this.events.filter(event => event.id !== eventId);
     }
 }
 exports.default = Storage;
