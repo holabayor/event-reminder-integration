@@ -5,6 +5,7 @@ import { parseEventCommand, sendMessageToTelex } from './utils';
 import { BackgroundTaskQueue } from './queue';
 import { eventValidator } from './validators';
 import { validationResult } from 'express-validator';
+import cors from 'cors';
 import morgan from 'morgan';
 
 const app: Application = express();
@@ -12,6 +13,8 @@ const PORT = process.env.PORT || 3000;
 
 const storage = new Storage();
 const taskQueue = new BackgroundTaskQueue();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(morgan('dev'));
