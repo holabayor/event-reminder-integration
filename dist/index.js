@@ -108,7 +108,7 @@ app.post('/event', validators_1.eventValidator, (req, res) => {
                 ],
             };
             storage.addEvent(eventData);
-            (0, utils_1.sendMessageToTelex)(`New Event Scheduled
+            (0, utils_1.sendMessageToTelex)(`
         ${title} scheduled for ${date} at ${time}`, channel_id);
             // console.log(`Event added: ${eventData}`);
             res.status(200).send({
