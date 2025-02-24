@@ -90,6 +90,10 @@ The server should be running on http://localhost:3000
    - Checks if any events are due for a reminder.
    - Sends a message to the specified Telex channel via webhook.
 
+## Screenshot
+
+![Screenshot of the integration](image-1.png)
+
 ## Validation & Error Handling
 
 - The eventValidator ensures that all required fields (message, channel_id, and settings) are present.
