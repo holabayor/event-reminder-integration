@@ -114,7 +114,8 @@ app.post('/event', eventValidator, (req: Request, res: Response) => {
       };
 
       storage.addEvent(eventData);
-      sendMessageToTelex(`${title} scheduled for ${date} at ${time}`, channel_id);
+      sendMessageToTelex(`New Event Scheduled
+        ${title} scheduled for ${date} at ${time}`, channel_id);
 
       // console.log(`Event added: ${eventData}`);
 
@@ -160,7 +161,8 @@ app.post('/tick', (req: Request, res: Response) => {
         // Send reminder if the reminder time is within a minute of the current time
         if (Math.abs(now.getTime() - reminderTime.getTime()) < 60000) {
           sendMessageToTelex(
-            `Event Reminder: ${event.title} is scheduled for ${event.date} at ${event.time}`,
+            `Event Reminder:
+            ${event.title} is scheduled for ${event.date} at ${event.time}`,
             event.channelId
           );
         } else {
